@@ -1,7 +1,7 @@
 # EXPERIMENT-NO--05-Distance measurement using Ultrasonic sensor
 
 ## AIM: 
-To interface an ultrasonic pair and measure the distance in centimeters , calculate the error
+To interface an FSR(force sensitive resistor) and scale the output voltage obtained to pressure applied 
  
 ### COMPONENTS REQUIRED:
 1.	ultrasonic sensor module HC-SR04
@@ -56,37 +56,47 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 ### PROGRAM 
 
+```c   
+
+
+ int trig = 2;
+ int echo = 3;
+ long time;
+ int distance;
+ void setup()
+ {
+   pinMode(3,INPUT);
+   pinMode(2,OUTPUT);
+   Serial.begin(9600);
+ }
+ void loop()
+ {
+   digitalWrite(2,LOW);
+   delay(2);
+   digitalWrite(2,HIGH);
+   delay(10);
+   digitalWrite(2,LOW);
+   time = pulseIn(3,HIGH);
+   distance = (time*0.034/2);
+   Serial.print("Distance = ");
+   Serial.println(distance);
+   delay(100);
+
+ }
+
+```
+
+
+### Distance vs measurement table :
+
+
+![WhatsApp Image 2022-05-03 at 7 54 33 PM](https://user-images.githubusercontent.com/75234646/166472088-3da3f1fe-7b77-46a6-a7c0-25e9c4bdf820.jpeg)
 
 
 
 
-
-### Distance vs measurement table 
-
-			
- 
-			
-			
-			
-
-![image](https://user-images.githubusercontent.com/36288975/190135379-52ebacd5-ccd5-460f-a4cd-4d0ad1d9b179.png)
-
-			
-			
-			
-			
-			
-			Average error = sum/ number of readings 
- 
-
-
-
-
-
-
-
-
-### RESULTS
+### RESULTS:
+Thus, we have interfaced an FSR(force sensitive resistor) and scale the output voltage obtained to pressure applied is verified.
 
 
 
