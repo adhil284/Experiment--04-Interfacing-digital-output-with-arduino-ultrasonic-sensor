@@ -1,7 +1,7 @@
 # EXPERIMENT-NO--05-Distance measurement using Ultrasonic sensor
 
 ## AIM: 
-To interface an FSR(force sensitive resistor) and scale the output voltage obtained to pressure applied 
+To interface an ultrasonic pair and measure the distance in centimeters , calculate the error
  
 ### COMPONENTS REQUIRED:
 1.	ultrasonic sensor module HC-SR04
@@ -56,47 +56,71 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 ### PROGRAM 
 
-```c   
 
-
- int trig = 2;
- int echo = 3;
- long time;
- int distance;
- void setup()
- {
-   pinMode(3,INPUT);
-   pinMode(2,OUTPUT);
-   Serial.begin(9600);
- }
- void loop()
- {
-   digitalWrite(2,LOW);
-   delay(2);
-   digitalWrite(2,HIGH);
-   delay(10);
-   digitalWrite(2,LOW);
-   time = pulseIn(3,HIGH);
-   distance = (time*0.034/2);
-   Serial.print("Distance = ");
-   Serial.println(distance);
-   delay(100);
-
- }
-
+```
+#define echoPin 9
+#define trigPin 10
+long duration;
+int distance;
+void setup(){
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.begin(9600);
+}
+void loop(){
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034/2;
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+}
 ```
 
 
-### Distance vs measurement table :
-
-
-![WhatsApp Image 2022-05-03 at 7 54 33 PM](https://user-images.githubusercontent.com/75234646/166472088-3da3f1fe-7b77-46a6-a7c0-25e9c4bdf820.jpeg)
 
 
 
 
-### RESULTS:
-Thus, we have interfaced an FSR(force sensitive resistor) and scale the output voltage obtained to pressure applied is verified.
+
+## Distance vs measurement table 
+
+			
+ ![Screenshot (101)](https://user-images.githubusercontent.com/94677128/190869608-3cacd821-08a2-4c22-98b5-8685aaab36a7.png)
+
+			
+			
+			
+
+
+			
+			
+			
+			
+			
+			Average error = sum/ number of readings 
+			= 0.5+0.7+0.4+0.8+1.0
+                        = 3.4/5
+	                =0.68
+ 
+## Circuit Diagram:
+![Screenshot (120)](https://user-images.githubusercontent.com/94677128/190869663-0f689166-aad8-4ccc-a3cd-a0c096f094e8.png)
+
+## Output:
+![Screenshot (122)](https://user-images.githubusercontent.com/94677128/190869993-c642cce0-7ab5-4a09-ad86-7388205a799b.png)
+
+
+
+
+
+
+
+
+## Result:
+Thus the distance value is measured in "CM" using ultrasonic sensor.
+
 
 
 
